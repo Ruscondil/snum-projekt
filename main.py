@@ -49,20 +49,29 @@ decoded_images = autoencoder.predict(test_images_gray)
 import matplotlib.pyplot as plt
 
 n = 10  # liczba przykładów do wyświetlenia
-plt.figure(figsize=(20, 4))
+plt.figure(figsize=(20, 6))
+
 for i in range(n):
     # Wyświetl oryginalny obraz
-    ax = plt.subplot(2, n, i + 1)
+    ax = plt.subplot(3, n, i + 1)
     plt.imshow(test_images[i])
     plt.title("Oryginalny")
     plt.gray()
     ax.get_xaxis().set_visible(False)
     ax.get_yaxis().set_visible(False)
 
+    # Wyświetl obraz w skali szarości przed dekodowaniem
+    ax = plt.subplot(3, n, i + 1 + n)
+    plt.imshow(test_images_gray[i][:, :, 0], cmap='gray')
+    plt.title("Szary")
+    plt.gray()
+    ax.get_xaxis().set_visible(False)
+    ax.get_yaxis().set_visible(False)
+
     # Wyświetl zdekodowany obraz
-    ax = plt.subplot(2, n, i + 1 + n)
+    ax = plt.subplot(3, n, i + 1 + 2 * n)
     plt.imshow(decoded_images[i])
-    plt.title("Zdekodowany")
+    plt.title("Pokolorowany")
     plt.gray()
     ax.get_xaxis().set_visible(False)
     ax.get_yaxis().set_visible(False)
