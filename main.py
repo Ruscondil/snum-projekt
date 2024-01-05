@@ -6,9 +6,14 @@ from tensorflow.keras.datasets import cifar10  # Możesz również użyć innego
 # Załaduj dane
 (train_images, _), (test_images, _) = cifar10.load_data()
 
+
+train_images = train_images.astype('float32') / 255.0
+test_images = test_images.astype('float32') / 255.0
 # Przygotuj dane
-train_images_gray = tf.image.rgb_to_grayscale(train_images).numpy() / 255.0
-test_images_gray = tf.image.rgb_to_grayscale(test_images).numpy() / 255.0
+train_images_gray = tf.image.rgb_to_grayscale(train_images).numpy() 
+test_images_gray = tf.image.rgb_to_grayscale(test_images).numpy() 
+
+
 
 # Model Autoenkodera
 def build_autoencoder(input_shape):
